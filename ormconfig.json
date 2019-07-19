@@ -1,4 +1,3 @@
-```
 {
     "type": "postgres",
     "host": "localhost",
@@ -10,6 +9,3 @@
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true
 }
-```
-dev log
-entities should be dist folder if use yarn start:dev
