@@ -1,6 +1,7 @@
 import { Controller, Get, Inject, Post, Body, Param, Patch, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
+import { UserDTO } from './user.dto';
 
 @Controller('user')
 export class UserController {
@@ -12,22 +13,13 @@ export class UserController {
     }
 
     @Post()
-    async save(@Body() body) {
-        const {name, password, description } = body
-        return await this.userService.add({
-            name,
-            password,
-            description
-        })
+    async save(@Body() data: UserDTO) {
+        return await this.userService.add(data)
     }
 
     @Patch(":id")
-    async update(@Param("id") id: string, @Body() body) {
-        const {description, name } = body
-        return await this.userService.update(id, {
-            description,
-            name
-        })
+    async update(@Param("id") id: string, @Body() data: Partial<UserDTO>) {
+        return await this.userService.update(id, data)
     }
 
     @Delete(":id")
