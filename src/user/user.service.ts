@@ -1,24 +1,23 @@
 import { Injectable, Inject, Logger, NotFoundException } from '@nestjs/common';
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
     
-    constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) {}
+    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
 
-    async findAll() : Promise<User[]> {
+    async findAll() : Promise<UserEntity[]> {
         return await this.userRepository.find()
     }
 
-    async add(user: User): Promise<User> {
-        // const r =  await this.userRepository.create(user)
+    async add(user: UserEntity): Promise<UserEntity> {
         const u = this.userRepository.save(user)
         return u
     }
 
-    async update(id: string,user: User): Promise<User| null> {
+    async update(id: string,user: UserEntity): Promise<UserEntity| null> {
         const toUpdate = await this.userRepository.findOne(id);
         if(toUpdate) {
             let updated = Object.assign(toUpdate, user)
