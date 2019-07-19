@@ -4,7 +4,7 @@ import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColu
 export class User {
     
     @PrimaryGeneratedColumn()
-    id?: number;
+    private id: number;
 
     @Column()
     firstName: string;
@@ -16,9 +16,11 @@ export class User {
     age: number;
 
     @CreateDateColumn()
-    created?: Date
+    private created: Date
 
     @UpdateDateColumn()
-    updated?: Date
+    private updated?: Date
+
+    
 
 }   
