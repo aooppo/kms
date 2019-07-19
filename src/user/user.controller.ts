@@ -14,12 +14,11 @@ export class UserController {
     @Post()
     async save(@Body() body) {
         const {name, password, description } = body
-        const u = {
+        return await this.userService.add({
             name,
             password,
             description
-        } as UserEntity
-        return await this.userService.add(u)
+        })
     }
 
     @Patch(":id")
@@ -28,7 +27,7 @@ export class UserController {
         return await this.userService.update(id, {
             description,
             name
-        } as UserEntity)
+        })
     }
 
     @Delete(":id")
