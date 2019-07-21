@@ -1,8 +1,9 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert } from 'typeorm';
+
 
 @Entity()
 export class UserEntity {
-    
+
     @PrimaryGeneratedColumn('uuid')
     private id: string;
 
@@ -21,6 +22,10 @@ export class UserEntity {
     @UpdateDateColumn()
     private updated?: Date
 
-    
+    @BeforeInsert()
+    async hashPassword() {
+        // bcrypt.hashPassword()
+
+    }
 
 }   

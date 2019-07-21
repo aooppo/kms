@@ -1,7 +1,8 @@
-import { Controller, Get, Inject, Post, Body, Param, Patch, Delete, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Inject, Post, Body, Param, Patch, Delete, HttpException, HttpStatus, UsePipes } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 import { UserDTO } from './user.dto';
+import { ValidationPipe } from '../shared/validation.pipe';
 
 @Controller('user')
 export class UserController {
@@ -11,7 +12,7 @@ export class UserController {
     getAll(): Promise<UserEntity[]> {
         return this.userService.findAll()
     }
-
+    @UsePipes(new ValidationPipe())
     @Post()
     save(@Body() data: UserDTO) {
         return this.userService.add(data)
@@ -24,12 +25,12 @@ export class UserController {
 
 
     @Get(":id")
-    get(@Param("id") id:string) {
+    get(@Param("id") id: string) {
         return this.userService.get(id)
     }
 
     @Delete(":id")
-    remove(@Param("id") id:string) {
+    remove(@Param("id") id: string) {
         return this.userService.remove(id)
     }
 

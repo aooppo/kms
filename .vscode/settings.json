@@ -53,5 +53,6 @@
             "server": "127.0.0.1",
             "username": "dbadmin"
         }
-    ]
+    ],
+    "editor.formatOnSave": true
 }
