@@ -7,11 +7,13 @@ import { UserModule } from './user/user.module';
 import { HttpExceptionFilter } from './shared/http-exception.filter';
 import { LoggingInterceptor } from './shared/logging.interceptor';
 import { RoleModule } from './role/role.module';
+import { CommentModule } from './comment/comment.module';
+import { ItemModule } from './item/item.module';
 
 
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UserModule, RoleModule],
+  imports: [TypeOrmModule.forRoot(), UserModule, RoleModule, CommentModule, ItemModule],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_FILTER,
