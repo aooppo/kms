@@ -9,14 +9,25 @@ export class UserController {
     @Inject() userService: UserService
 
     @Get()
-    getAll(): Promise<UserEntity[]> {
-        return this.userService.findAll()
+    async getAll() {
+        const users = await this.userService.findAll()
+        return users.map(u => u.toResponseObject(false))
     }
+
     @UsePipes(new ValidationPipe())
-    @Post()
-    save(@Body() data: UserDTO) {
+    @Post('signup')
+    register(@Body() data: UserDTO) {
         return this.userService.add(data)
     }
+
+    @UsePipes(new ValidationPipe())
+    @Post('signin')
+    login(@Body() data: UserDTO) {
+        return this.userService.login(data)
+    }
+
+
+
 
     @Patch(":id")
     update(@Param("id") id: string, @Body() data: Partial<UserDTO>) {
