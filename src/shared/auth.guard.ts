@@ -3,14 +3,14 @@ import { Injectable, CanActivate, ExecutionContext, HttpException, HttpStatus } 
 import * as jwt from 'jsonwebtoken'
 @Injectable()
 export class AuthGuard implements CanActivate {
-    canActivate(
+    async canActivate(
         context: ExecutionContext,
-    ): boolean | Promise<boolean> {
+    ): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
         if (!request.headers.authorization) {
             return false
         }
-        const decoded = this.validateToken(request.headers.authorization)
+        const decoded = await this.validateToken(request.headers.authorization)
         if (decoded) {
             request.user = decoded
         }

@@ -12,8 +12,7 @@ export class UserController {
 
     @UseGuards(new AuthGuard())
     @Get()
-    async getAll(@User() user): Promise<UserRO[]> {
-        console.log('getall> ', user)
+    async getAll(@User() user: any): Promise<UserRO[]> {
         const users = await this.userService.findAll()
         return users.map(u => u.toResponseObject(false))
     }
