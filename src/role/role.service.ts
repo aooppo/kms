@@ -1,21 +1,29 @@
-import { Injectable, HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, NotFoundException, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RoleEntity } from './role.entity';
 import { Repository } from 'typeorm';
 import { RoleDTO, RoleRO } from './role.dto';
+// import { UserEntity } from '../user/user.entity';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class RoleService {
-    constructor(@InjectRepository(RoleEntity) private readonly roleRepository: Repository<RoleEntity>) { }
+    constructor(
+        private readonly userService: UserService,
+        @InjectRepository(RoleEntity) private readonly roleRepository: Repository<RoleEntity>
+    ) { }
 
     async show() {
         return await this.roleRepository.find()
     }
 
-    async add(data: RoleDTO): Promise<RoleRO> {
+    async add(user: string, data: RoleDTO): Promise<RoleRO> {
+
+        // const u = await this.userService.get(user)
+
         const { name } = data
-        const u = await this.roleRepository.findOne({ where: { name } })
-        if (u) {
+        const role = await this.roleRepository.findOne({ where: { name } })
+        if (role) {
             throw new HttpException(`The role ${name} existed already.`, HttpStatus.BAD_REQUEST)
         }
         const r = this.roleRepository.create(data)

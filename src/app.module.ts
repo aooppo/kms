@@ -6,21 +6,21 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { HttpExceptionFilter } from './shared/http-exception.filter';
 import { LoggingInterceptor } from './shared/logging.interceptor';
-// import { Connection } from 'typeorm';
 import { RoleModule } from './role/role.module';
 
 
+
 @Module({
-  imports: [ TypeOrmModule.forRoot(), UserModule, RoleModule],
+  imports: [TypeOrmModule.forRoot(), UserModule, RoleModule],
   controllers: [AppController],
-  providers: [AppService,   {
+  providers: [AppService, {
     provide: APP_FILTER,
     useClass: HttpExceptionFilter,
-  },{
-    provide: APP_INTERCEPTOR,
-    useClass: LoggingInterceptor,
-  }],
+  }, {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    }],
 })
 export class AppModule {
-  
+
 }

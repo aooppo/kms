@@ -1,6 +1,5 @@
 import { Controller, Get, Inject, Post, Body, Param, Patch, Delete, HttpException, HttpStatus, UsePipes, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserEntity } from './user.entity';
 import { UserDTO, UserRO } from './user.dto';
 import { ValidationPipe } from '../shared/validation.pipe';
 import { AuthGuard } from '../shared/auth.guard';
