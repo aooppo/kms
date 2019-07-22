@@ -4,7 +4,7 @@
 
 ## modules
 
-user module
-role module
-item module
-comment module
+- user module
+- role module
+- item module
+- comment module
