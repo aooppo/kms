@@ -2,7 +2,7 @@ import { Injectable, Inject, Logger, NotFoundException, HttpException, HttpStatu
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { UserDTO } from './user.dto';
+import { UserDTO, UserRO } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -21,7 +21,7 @@ export class UserService {
         return u
     }
 
-    async login(data: UserDTO) {
+    async login(data: UserDTO): Promise<UserRO> {
         const { name, password } = data
         const user = await this.userRepository.findOne({ where: { name } })
         if (!user || !(await user.comparePassword(password))) {
@@ -30,14 +30,15 @@ export class UserService {
         return user.toResponseObject()
     }
 
-    async add(data: UserDTO): Promise<UserEntity> {
+    async add(data: UserDTO): Promise<UserRO> {
         const { name } = data
         const u = await this.userRepository.findOne({ where: { name } })
         if (u) {
             throw new HttpException(`The user ${name} existed already.`, HttpStatus.BAD_REQUEST)
         }
         const user = this.userRepository.create(data)
-        return await this.userRepository.save(user)
+        await this.userRepository.save(user)
+        return user.toResponseObject()
     }
 
     async update(id: string, user: Partial<UserDTO>) {

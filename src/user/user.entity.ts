@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert } from 'typeorm';
 import * as bcrypt from 'bcryptjs'
 import * as jsonwebtoken from 'jsonwebtoken'
+import { UserRO } from './user.dto';
 
 @Entity()
 export class UserEntity {
@@ -35,7 +36,7 @@ export class UserEntity {
 
     }
 
-    toResponseObject(showToken = true) {
+    toResponseObject(showToken = true): UserRO {
         const { id, created, name } = this
         let response: any = {
             id, created, name

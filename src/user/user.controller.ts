@@ -1,7 +1,7 @@
 import { Controller, Get, Inject, Post, Body, Param, Patch, Delete, HttpException, HttpStatus, UsePipes } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
-import { UserDTO } from './user.dto';
+import { UserDTO, UserRO } from './user.dto';
 import { ValidationPipe } from '../shared/validation.pipe';
 
 @Controller('user')
@@ -9,20 +9,20 @@ export class UserController {
     @Inject() userService: UserService
 
     @Get()
-    async getAll() {
+    async getAll(): Promise<UserRO[]> {
         const users = await this.userService.findAll()
         return users.map(u => u.toResponseObject(false))
     }
 
     @UsePipes(new ValidationPipe())
     @Post('signup')
-    register(@Body() data: UserDTO) {
+    register(@Body() data: UserDTO): Promise<UserRO> {
         return this.userService.add(data)
     }
 
     @UsePipes(new ValidationPipe())
     @Post('signin')
-    login(@Body() data: UserDTO) {
+    login(@Body() data: UserDTO): Promise<UserRO> {
         return this.userService.login(data)
     }
 

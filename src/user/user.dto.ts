@@ -8,3 +8,10 @@ export class UserDTO {
     @IsNotEmpty()
     name: string
 }
+
+export class UserRO {
+    id: string
+    name: string
+    created: Date
+    token?: string
+}
