@@ -1,6 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { Injectable } from '@nestjs/common';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import { Injectable } from '@nestjs/common';
 import { CommentEntity } from './comment.entity';
 
 @Injectable()

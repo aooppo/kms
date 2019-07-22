@@ -1,5 +1,6 @@
+import { Column, Entity, ManyToOne } from "typeorm";
 import { AbsEntity } from "../shared/base.entity";
-import { Column, Entity } from "typeorm";
+import { ItemEntity } from "../item/item.entity";
 
 @Entity()
 export class CommentEntity extends AbsEntity {
@@ -12,4 +13,8 @@ export class CommentEntity extends AbsEntity {
         type: 'text'
     })
     content: string
+
+    @ManyToOne(type => ItemEntity)
+    item: ItemEntity
+
 }
