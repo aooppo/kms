@@ -11,14 +11,7 @@ import { CommentService } from '../comment/comment.service';
         join: {
             'item': { allow: ['name', 'status'] }
         }
-    },
-    params: {
-        id: {
-            field: 'id',
-            type: 'uuid',
-            primary: true,
-        },
-    },
+    }
 })
 @Controller('comment')
 export class CommentController implements CrudController<CommentEntity> {
