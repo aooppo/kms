@@ -1,15 +1,19 @@
-import { Controller, Get, Inject, Post, Body, Param, Patch, Delete, HttpException, HttpStatus, UsePipes } from '@nestjs/common';
+import { Controller, Get, Inject, Post, Body, Param, Patch, Delete, HttpException, HttpStatus, UsePipes, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 import { UserDTO, UserRO } from './user.dto';
 import { ValidationPipe } from '../shared/validation.pipe';
+import { AuthGuard } from '../shared/auth.guard';
+import { User } from '../shared/user.decorator';
 
 @Controller('user')
 export class UserController {
     @Inject() userService: UserService
 
+    @UseGuards(new AuthGuard())
     @Get()
-    async getAll(): Promise<UserRO[]> {
+    async getAll(@User() user): Promise<UserRO[]> {
+        console.log('getall> ', user)
         const users = await this.userService.findAll()
         return users.map(u => u.toResponseObject(false))
     }
