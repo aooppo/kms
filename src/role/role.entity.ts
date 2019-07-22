@@ -1,20 +1,8 @@
 import { PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Entity } from "typeorm";
+import { AbsEntity } from "../shared/base.entity";
 
 @Entity()
-export class RoleEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string
-    @Column({
-        unique: true,
-        type: 'text'
-    })
-    name: string
-
-    @CreateDateColumn()
-    created: Date
-
-    @UpdateDateColumn()
-    updated: Date
+export class RoleEntity extends AbsEntity {
 
     @Column({
         nullable: true,

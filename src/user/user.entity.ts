@@ -2,18 +2,10 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import * as bcrypt from 'bcryptjs'
 import * as jsonwebtoken from 'jsonwebtoken'
 import { UserRO } from './user.dto';
+import { AbsEntity } from '../shared/base.entity';
 
 @Entity()
-export class UserEntity {
-
-    @PrimaryGeneratedColumn('uuid')
-    private id: string;
-
-    @Column({
-        type: 'text',
-        unique: true
-    })
-    name: string
+export class UserEntity extends AbsEntity {
 
     @Column()
     password: string;
@@ -23,12 +15,6 @@ export class UserEntity {
         type: 'text'
     })
     description: string;
-
-    @CreateDateColumn()
-    private created: Date
-
-    @UpdateDateColumn()
-    private updated?: Date
 
     @BeforeInsert()
     async hashPassword() {
