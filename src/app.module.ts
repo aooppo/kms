@@ -7,10 +7,11 @@ import { UserModule } from './user/user.module';
 import { HttpExceptionFilter } from './shared/http-exception.filter';
 import { LoggingInterceptor } from './shared/logging.interceptor';
 // import { Connection } from 'typeorm';
+import { RoleModule } from './role/role.module';
 
 
 @Module({
-  imports: [ TypeOrmModule.forRoot(), UserModule],
+  imports: [ TypeOrmModule.forRoot(), UserModule, RoleModule],
   controllers: [AppController],
   providers: [AppService,   {
     provide: APP_FILTER,
