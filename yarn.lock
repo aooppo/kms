@@ -100,6 +100,30 @@
   dependencies:
     uuid "3.3.2"
 
+"@nestjsx/crud-request@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud-request/-/crud-request-4.1.0.tgz#89c0e54e8633e3e47dbaf7737a4d0b75ac069574"
+  integrity sha512-k8fs1Z81zn8f4u/h2TQTuY+YLCp7DVaVTdZOr1rZWpxOKVj03fV2IRtCNUjDT9JgoQWs0gAcoLy53myE4BJZuA==
+
+"@nestjsx/crud-typeorm@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud-typeorm/-/crud-typeorm-4.1.0.tgz#859dfa69278ef8bbdda901a7f675a31549cade4b"
+  integrity sha512-CcGrnC/jeki8bnr+iqU18ymZb1CdSzWp9ECbNp3zumYcF67UUkEW/mANmF3SdfByx5PR678bCkGOaFZahdct+w==
+
+"@nestjsx/crud@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud/-/crud-4.1.0.tgz#d6bc482f41d78fd3bc0284387dfa765d9057250c"
+  integrity sha512-FkvYvFGCD+L75A8ssswevkHkwpolBDcw9KQRe7xfPXle/YPSUrAHdG78yY9bFNXFhCrwuZMIAN+fLknxZXQhyA==
+  dependencies:
+    "@nestjsx/crud-request" "^4.1.0"
+    "@nestjsx/util" "^4.1.0"
+    deepmerge "^3.2.0"
+
+"@nestjsx/util@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@nestjsx/util/-/util-4.1.0.tgz#ce7ea06a1f11db87a323e29d3aeaad21b3fe156a"
+  integrity sha512-VJ6qPalAexk86J6ia6FBMcy5R4QV7MyIOLiTKBE607VGXI94V0txlauAnr2HlAVFSx0LNvisVGwb+pe6VmJFbQ==
+
 "@nuxtjs/opencollective@0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/opencollective/-/opencollective-0.2.2.tgz#26a761ebf588cc92a422d7cee996a66bd6e2761e"
@@ -1246,6 +1270,11 @@ deepmerge@^2.0.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
   integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
+
+deepmerge@^3.2.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
+  integrity sha512-GRQOafGHwMHpjPx9iCvTgpu9NojZ49q794EEL94JVEw6VaeA8XTUyBKvAkOOjBX9oJNiV6G3P+T+tihFjo2TqA==
 
 default-require-extensions@^1.0.0:
   version "1.0.0"
