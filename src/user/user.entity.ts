@@ -27,23 +27,11 @@ export class UserEntity extends AbsEntity {
         let response: any = {
             id, created, name
         }
-        if (showToken) {
-            response.token = this.token
-        }
+
         return response
     }
 
     async comparePassword(attempt: string) {
         return await bcrypt.compare(attempt, this.password)
     }
-
-    private get token() {
-
-
-        const { id, name } = this
-        return jsonwebtoken.sign({ id, name }, process.env.SECRET, {
-            expiresIn: '7d'
-        })
-    }
-
 }   
