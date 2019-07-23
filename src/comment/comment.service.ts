@@ -8,4 +8,10 @@ export class CommentService extends TypeOrmCrudService<CommentEntity> {
     constructor(@InjectRepository(CommentEntity) repo) {
         super(repo);
     }
+
+    async getOneWithRelations(id: string, ...arr: string[]) {
+        return await this.repo.findOne(id, {
+            relations: [...arr]
+        })
+    }
 }
