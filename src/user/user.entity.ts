@@ -34,12 +34,12 @@ export class UserEntity extends AbsEntity {
     }
 
     async comparePassword(attempt: string) {
-        console.log('pw', attempt)
-        console.log(await bcrypt.compare(attempt, this.password))
         return await bcrypt.compare(attempt, this.password)
     }
 
     private get token() {
+
+
         const { id, name } = this
         return jsonwebtoken.sign({ id, name }, process.env.SECRET, {
             expiresIn: '7d'
