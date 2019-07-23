@@ -1,8 +1,9 @@
 {
   "watch": [
-    "src"
+    "src",
+    "ormconfig.json"
   ],
-  "ext": "ts",
+  "ext": "ts graphql",
   "ignore": [
     "src/**/*.spec.ts"
   ],

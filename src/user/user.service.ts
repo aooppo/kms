@@ -13,6 +13,14 @@ export class UserService {
         return await this.userRepository.find()
     }
 
+    async getByName(name: string) {
+        return await this.userRepository.findOne({
+            where: {
+                name
+            }
+        })
+    }
+
     async get(id: string) {
         const u = await this.userRepository.findOne(id)
         if (!u) {

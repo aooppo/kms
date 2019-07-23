@@ -34,6 +34,7 @@ export class UserEntity extends AbsEntity {
     }
 
     async comparePassword(attempt: string) {
+        console.log('pw', attempt)
         console.log(await bcrypt.compare(attempt, this.password))
         return await bcrypt.compare(attempt, this.password)
     }

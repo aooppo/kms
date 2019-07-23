@@ -1,21 +1,24 @@
 import { Controller, Body, Param, Patch, Get, Post, Delete, UsePipes, UseGuards } from '@nestjs/common';
 import { RoleService } from '../role/role.service';
 import { RoleDTO, RoleRO } from './role.dto';
-import { AuthGuard } from '../shared/auth.guard';
+// import { AuthGuard } from '../shared/auth.guard';
 import { User } from '../shared/user.decorator';
+import { AuthGuard } from '@nestjs/passport';
+
+
 
 @Controller('role')
 export class RoleController {
     constructor(private readonly roleService: RoleService) { }
 
 
-
+    @UseGuards(AuthGuard('local'))
     @Get()
     show(): Promise<RoleRO[]> {
 
         return this.roleService.show()
     }
-    @UseGuards(new AuthGuard())
+
     @Post()
     add(@User('id') user: string, @Body() data: RoleDTO): Promise<RoleRO> {
         console.log('role> ', user)

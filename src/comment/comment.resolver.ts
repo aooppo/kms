@@ -22,9 +22,8 @@ export class CommentResolver {
     }
 
     @ResolveProperty()
-    async item(@Parent() comment) {
+    async item(@Parent() comment: CommentEntity) {
         const { item } = comment;
-        console.log(comment)
         const { id } = item;
         return await this.itemService.findOne(id);
     }

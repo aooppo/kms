@@ -10,6 +10,7 @@ import { LoggingInterceptor } from './shared/logging.interceptor';
 import { RoleModule } from './role/role.module';
 import { CommentModule } from './comment/comment.module';
 import { ItemModule } from './item/item.module';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -19,7 +20,7 @@ import { ItemModule } from './item/item.module';
     typePaths: ['./**/*.graphql'],
 
   }),
-    UserModule, RoleModule, CommentModule, ItemModule],
+    UserModule, RoleModule, CommentModule, ItemModule, AuthModule],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_FILTER,

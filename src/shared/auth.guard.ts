@@ -1,6 +1,9 @@
 
 import { Injectable, CanActivate, ExecutionContext, HttpException, HttpStatus } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken'
+/**
+ * @deprecated use passport instead of it
+ */
 @Injectable()
 export class AuthGuard implements CanActivate {
     async canActivate(

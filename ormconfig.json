@@ -5,7 +5,7 @@
     "username": "dbadmin",
     "password": "dl123",
     "database": "nest",
-    "logging": true,
+    "logging": false,
     "entities": [
         "src/**/*.entity{.ts,.js}"
     ],
