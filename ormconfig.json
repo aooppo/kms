@@ -6,6 +6,8 @@
     "password": "dl123",
     "database": "nest",
     "logging": true,
-    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "entities": [
+        "src/**/*.entity{.ts,.js}"
+    ],
     "synchronize": true
 }

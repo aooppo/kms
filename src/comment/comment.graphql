@@ -1,5 +1,5 @@
 type Comment {
-  id: String!
+  id: ID!
   name: String!
   title: String
   content: String
@@ -7,7 +7,7 @@ type Comment {
 }
 
 type Item {
-  id: String!
+  id: ID!
   name: String
   status: String
 }
