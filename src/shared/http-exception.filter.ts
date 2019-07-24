@@ -7,7 +7,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();
         const request = ctx.getRequest<Request>();
-       
+        if (!request) {
+            console.log(ctx, response)
+            // response.status(200).json({ msg: 'graphql error!' });
+            return
+        }
         const status = exception.getStatus
             ? exception.getStatus()
             : HttpStatus.INTERNAL_SERVER_ERROR
@@ -15,8 +19,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const errorResponse = {
             code: status,
             timestamp: new Date().toLocaleDateString(),
-            path: request.url,
-            method: request.method,
+            path: request ? request.url : 'graphql-url!',
+            method: request ? request.method : 'graphql-method!',
             message:
                 status !== HttpStatus.INTERNAL_SERVER_ERROR
                     ? exception.message.error || exception.message || null
@@ -31,7 +35,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
             );
         } else {
             Logger.error(
-                `${request.method} ${request.url}`,
+                `${request && request.method} ${request && request.url}`,
                 JSON.stringify(errorResponse),
                 'ExceptionFilter',
             );

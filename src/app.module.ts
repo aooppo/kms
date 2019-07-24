@@ -18,7 +18,9 @@ import { AuthModule } from './auth/auth.module';
   imports: [TypeOrmModule.forRoot(),
   GraphQLModule.forRoot({
     typePaths: ['./**/*.graphql'],
-
+    context: ({ req }) => ({ req }),
+    debug: true,
+    playground: true,
   }),
     UserModule, RoleModule, CommentModule, ItemModule, AuthModule],
   controllers: [AppController],
