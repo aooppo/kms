@@ -18,7 +18,9 @@ export class LoggingInterceptor implements NestInterceptor {
           tap(() => Logger.log(`${method} ${url} ${Date.now() - now} ms`, context.getClass().name)),
         )
     } else {
+
       const ctx: any = GqlExecutionContext.create(context)
+
       const resolverName = ctx.constructorRef.name
       const info = ctx.getInfo()
       return next.handle()

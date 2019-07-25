@@ -4,15 +4,19 @@ import { UserService } from "./user.service";
 import { GqlLocalAuthGuard, GqlJwtAuthGuard } from "../auth/graphql-auth.guard";
 import { UserDTO } from "./user.dto";
 import { User } from "../shared/user.decorator";
+import { UserEntity } from "./user.entity";
+import { ST } from "./string.type";
+import { InputType } from "type-graphql";
 
-@Resolver('User')
+
+@Resolver(UserEntity)
 export class UserResolver {
     constructor(
         private readonly userService: UserService,
     ) { }
 
     @UseGuards(GqlJwtAuthGuard)
-    @Query()
+    @Query(returns => [UserEntity])
     async users() {
         return this.userService.findAll()
     }
@@ -23,11 +27,14 @@ export class UserResolver {
     //     console.log(`login`, user)
     // }
 
-    @Mutation()
-    async register(@Args() { username, password }) {
-        console.log(`register..`)
-        const user = await this.userService.add({ name: username, password })
-        return { accessToken: '123' }
+
+
+    @Mutation(returns => String)
+    async register(@Args('username') username: string, @Args('password') password: string) {
+        const aa: ST = { accessToken: '111' };
+        // const user = await this.userService.add({ name: username, password })
+        return `ashs token A`;
     }
 
 }
+

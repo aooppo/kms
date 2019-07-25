@@ -3,10 +3,26 @@ import * as bcrypt from 'bcryptjs'
 import * as jsonwebtoken from 'jsonwebtoken'
 import { UserRO } from './user.dto';
 import { AbsEntity } from '../shared/base.entity';
-
+import { Field, Int, ObjectType } from 'type-graphql';
 @Entity()
-export class UserEntity extends AbsEntity {
+@ObjectType()
+export class UserEntity { //extends AbsEntity {
+    @Field()
+    @PrimaryGeneratedColumn('uuid')
+    id: string
+    @Column({
+        unique: true,
+        type: 'text'
+    })
+    @Field()
+    name: string
 
+    @CreateDateColumn()
+    created: Date
+
+    @UpdateDateColumn()
+    updated: Date
+    @Field()
     @Column()
     password: string;
 
@@ -14,6 +30,7 @@ export class UserEntity extends AbsEntity {
         nullable: true,
         type: 'text'
     })
+    @Field()
     description: string;
 
     @BeforeInsert()
