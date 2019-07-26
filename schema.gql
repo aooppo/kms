@@ -4,7 +4,7 @@
 # -----------------------------------------------
 
 type Mutation {
-  register(password: String!, username: String!): String!
+  register(data: UserInput!): String!
 }
 
 type Query {
@@ -13,6 +13,12 @@ type Query {
 
 type UserEntity {
   id: String!
+  name: String!
+  password: String!
+  description: String!
+}
+
+input UserInput {
   name: String!
   password: String!
   description: String!

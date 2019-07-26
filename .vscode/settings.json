@@ -54,5 +54,7 @@
             "username": "dbadmin"
         }
     ],
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single"
 }
