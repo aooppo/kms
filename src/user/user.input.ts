@@ -9,6 +9,6 @@ export class UserInput {
     @Field()
     password: string;
 
-    @Field()
+    @Field({ nullable: true })
     description: string;
 }
