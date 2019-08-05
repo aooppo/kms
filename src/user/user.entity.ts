@@ -2,53 +2,54 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import * as bcrypt from 'bcryptjs'
 import * as jsonwebtoken from 'jsonwebtoken'
 import { UserRO } from './user.dto';
-import { AbsEntity } from '../shared/base.entity';
 import { Field, Int, ObjectType } from 'type-graphql';
 @Entity()
 @ObjectType()
-export class UserEntity { //extends AbsEntity {
+export class UserEntity {
     @Field()
     @PrimaryGeneratedColumn('uuid')
-    id: string
+    id: string;
+
     @Column({
         unique: true,
-        type: 'text'
+        type: 'text',
     })
     @Field()
-    name: string
+    name: string;
 
     @CreateDateColumn()
-    created: Date
+    created: Date;
 
     @UpdateDateColumn()
-    updated: Date
-    @Field()
+    updated: Date;
+
+    // @Field()
     @Column()
     password: string;
 
     @Column({
         nullable: true,
-        type: 'text'
+        type: 'text',
     })
     @Field()
     description: string;
 
     @BeforeInsert()
     async hashPassword() {
-        this.password = await bcrypt.hash(this.password, 10)
+        this.password = await bcrypt.hash(this.password, 10);
 
     }
 
     toResponseObject(showToken = true): UserRO {
-        const { id, created, name } = this
+        const { id, created, name } = this;
         let response: any = {
-            id, created, name
-        }
+            id, created, name,
+        };
 
-        return response
+        return response;
     }
 
     async comparePassword(attempt: string) {
-        return await bcrypt.compare(attempt, this.password)
+        return await bcrypt.compare(attempt, this.password);
     }
-}   
+}

@@ -35,19 +35,19 @@ export class UserController {
 
 
 
-    @Patch(":id")
-    update(@Param("id") id: string, @Body() data: Partial<UserDTO>) {
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() data: Partial<UserDTO>) {
         return this.userService.update(id, data)
     }
 
 
-    @Get(":id")
-    get(@Param("id") id: string) {
+    @Get(':id')
+    get(@Param('id') id: string) {
         return this.userService.get(id)
     }
 
-    @Delete(":id")
-    remove(@Param("id") id: string) {
+    @Delete(':id')
+    remove(@Param('id') id: string) {
         return this.userService.remove(id)
     }
 

@@ -14,7 +14,6 @@ type Query {
 type UserEntity {
   id: String!
   name: String!
-  password: String!
   description: String!
 }
 
