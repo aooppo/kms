@@ -5,6 +5,7 @@
 
 type Mutation {
   register(data: UserInput!): String!
+  login(password: String!, username: String!): String!
 }
 
 type Query {

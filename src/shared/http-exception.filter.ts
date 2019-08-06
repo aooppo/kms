@@ -10,7 +10,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         if (!request) {
             console.log(ctx, response)
             // response.status(200).json({ msg: 'graphql error!' });
-            return
+            return;
         }
         const status = exception.getStatus
             ? exception.getStatus()
